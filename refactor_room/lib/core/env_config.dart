@@ -5,11 +5,6 @@ enum LlmBackend { venice, groq, anthropic }
 class EnvConfig {
   EnvConfig._();
 
-  static const String _bakedGroqKey =
-      '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';
-  static const String _bakedVeniceKey =
-      'VENICE_INFERENCE_KEY_s18F9xz30SiCVQWRwvv97SAQzQtxioROmRrlWWIsIP';
-
   /// Beta builds default to Venice. Set LLM_BACKEND=groq or anthropic to swap.
   static LlmBackend get backend {
     final raw = dotenv.env['LLM_BACKEND']?.trim().toLowerCase();
@@ -25,18 +20,22 @@ class EnvConfig {
 
   static String get groqApiKey {
     final fromEnv = dotenv.env['GROQ_API_KEY']?.trim() ?? '';
-    if (fromEnv.isNotEmpty && fromEnv != 'your_groq_key_here') {
-      return fromEnv;
+    if (fromEnv.isEmpty || fromEnv == 'your_groq_key_here') {
+      throw StateError(
+        'GROQ_API_KEY is not set. Copy .env.example to .env and add your key.',
+      );
     }
-    return _bakedGroqKey;
+    return fromEnv;
   }
 
   static String get veniceApiKey {
     final fromEnv = dotenv.env['VENICE_API_KEY']?.trim() ?? '';
-    if (fromEnv.isNotEmpty && fromEnv != 'your_venice_key_here') {
-      return fromEnv;
+    if (fromEnv.isEmpty || fromEnv == 'your_venice_key_here') {
+      throw StateError(
+        'VENICE_API_KEY is not set. Copy .env.example to .env and add your key.',
+      );
     }
-    return _bakedVeniceKey;
+    return fromEnv;
   }
 
   static String get anthropicApiKey {
