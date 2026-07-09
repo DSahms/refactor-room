@@ -1,0 +1,51 @@
+{
+  "scanned_at": "2026-05-15T09:36:50.817216+00:00",
+  "root": "C:\\Users\\david\\Projects\\Panoptes Lens",
+  "summary": {
+    "files_scanned": 2,
+    "total_issues": 4,
+    "by_severity": {
+      "error": 0,
+      "warning": 2,
+      "info": 2
+    }
+  },
+  "files": [
+    {
+      "path": "audit.py",
+      "lines": 317,
+      "issues": [
+        {
+          "severity": "warning",
+          "rule": "function_too_long",
+          "line": 205,
+          "message": "Function 'scan_directory' is 71 lines long (max 50)"
+        },
+        {
+          "severity": "warning",
+          "rule": "missing_docstring",
+          "line": 282,
+          "message": "Public function 'main' is missing a docstring"
+        },
+        {
+          "severity": "info",
+          "rule": "print_statement",
+          "line": 0,
+          "message": "File contains 3 print() statement(s)"
+        }
+      ]
+    },
+    {
+      "path": "panoptes_lens/ios/Flutter/ephemeral/flutter_lldb_helper.py",
+      "lines": 32,
+      "issues": [
+        {
+          "severity": "info",
+          "rule": "print_statement",
+          "line": 0,
+          "message": "File contains 2 print() statement(s)"
+        }
+      ]
+    }
+  ]
+}

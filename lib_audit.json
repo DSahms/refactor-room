@@ -1,0 +1,14 @@
+{
+  "scanned_at": "2026-05-15T16:53:44.224640+00:00",
+  "root": "C:\\Users\\david\\Projects\\Panoptes Lens\\panoptes_lens\\lib",
+  "summary": {
+    "files_scanned": 0,
+    "total_issues": 0,
+    "by_severity": {
+      "error": 0,
+      "warning": 0,
+      "info": 0
+    }
+  },
+  "files": []
+}

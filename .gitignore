@@ -1,0 +1,26 @@
+# API secrets — never commit real keys
+.env
+**/.env
+
+# Flutter / Dart (refactor_room)
+refactor_room/.dart_tool/
+refactor_room/.flutter-plugins
+refactor_room/.flutter-plugins-dependencies
+refactor_room/.packages
+refactor_room/build/
+refactor_room/*.iml
+refactor_room/*.log
+refactor_room/*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

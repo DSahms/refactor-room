@@ -1,0 +1,45 @@
+---
+description: Panoptes Lens architecture, sacred files, and design-PDF rules
+alwaysApply: true
+---
+
+# Panoptes Lens
+
+Flutter app root: `panoptes_lens/`. Read `AGENTS.md` at repo root for full briefing.
+
+## One codebase, one truth
+
+- There is **one** implementation per screen. Never create parallel versions (`*_v2`, `*_pdf`, `*_designer`).
+- **Working behavior beats mockup fidelity.** The app already ran end-to-end before styling work.
+- Do not merge or rewrite large swaths to "match the PDF." Skin incrementally via `lib/theme/tokens.dart`.
+
+## Design PDF is style-only
+
+`Panoptes_Lens___Design_System.pdf` (Claude Designer output) is a **visual reference** — palette, typography, layout mood, copy tone.
+
+It is **not** a spec to reimplement line-by-line. Prior sessions treated it as gospel, rewrote working code, and broke the pipeline in a merge/rewrite loop.
+
+When styling: preserve Riverpod providers, navigation, and pipeline hooks. Change appearance, not architecture.
+
+## Sacred — ask before changing
+
+- `panoptes_lens/lib/api/prompts.dart` — the product; never expose in UI; do not shorten
+- `panoptes_lens/lib/api/pipeline.dart` — stage orchestration
+- `panoptes_lens/lib/api/claude_client.dart` — streaming + errors
+- `panoptes_lens/lib/models/analysis.dart` — lenient parsers
+
+## Resolved decisions (do not re-open)
+
+- State: **Riverpod** (`inputProvider`, `pipelineRunProvider`, `analysisProvider`)
+- Voice: **speech_to_text**
+- Models: see `lib/config/api_config.dart` (not stale `handoff.md`)
+
+## UI conventions
+
+- All colors/type from `lib/theme/tokens.dart` — no raw `Color()` in widgets
+- Empty parsed fields are normal; UI must handle gracefully
+- Prompts are never user-visible
+
+## Before finishing UI work
+
+Run `flutter analyze` from `panoptes_lens/`. Do not leave broken imports or duplicate screen implementations.

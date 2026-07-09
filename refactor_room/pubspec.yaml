@@ -1,0 +1,45 @@
+name: refactor_room
+description: "The Refactor Room — skeleton + transplant business-idea analysis."
+publish_to: 'none'
+
+version: 1.1.0+7
+
+environment:
+  sdk: ^3.11.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # Riverpod for state management — chosen over Provider because it is
+  # compile-safe, supports async notifiers out of the box, and has no
+  # BuildContext coupling (important for desktop service layers).
+  flutter_riverpod: ^2.5.1
+
+  # `http` is lighter than `dio` and sufficient for the three sequential
+  # Claude API calls we need.  No interceptor chains or multipart uploads
+  # are required, so the extra dio surface area would be dead weight.
+  http: ^1.2.0
+
+  # Loads the .env file at startup so the API key is never hardcoded.
+  flutter_dotenv: ^5.2.1
+
+  # Speech-to-text for the mic input on the input screen.
+  speech_to_text: ^7.0.0
+
+  # System file picker for markdown / text imports on the input screen.
+  file_picker: ^8.1.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  # The .env file must be declared as an asset so flutter_dotenv can read it.
+  assets:
+    - .env
